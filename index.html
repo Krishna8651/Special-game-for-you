@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Secret Love Messages - Heart Collection Game</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="game-container">
+        <header class="game-header">
+            <h1><i class="fas fa-heart"></i> Secret Love Messages</h1>
+            <p class="subtitle">Collect hearts to unlock beautiful love messages! 💕</p>
+        </header>
+
+        <main class="game-main">
+            <!-- Game Stats Section -->
+            <div class="game-stats">
+                <div class="stat-box">
+                    <div class="stat-icon">❤️</div>
+                    <div class="stat-content">
+                        <h3>Hearts</h3>
+                        <p id="heartsCounter">0 / 10</p>
+                    </div>
+                </div>
+                
+                <div class="stat-box">
+                    <div class="stat-icon">🎯</div>
+                    <div class="stat-content">
+                        <h3>Level</h3>
+                        <p id="level">1</p>
+                    </div>
+                </div>
+                
+                <div class="stat-box">
+                    <div class="stat-icon">⏱️</div>
+                    <div class="stat-content">
+                        <h3>Time</h3>
+                        <p id="timer">00:00</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Progress Bar -->
+            <div class="progress-container">
+                <div class="progress-label">
+                    <span>Collection Progress</span>
+                    <span id="progressPercent">0%</span>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress-fill" id="collectionProgress"></div>
+                </div>
+            </div>
+
+            <!-- Game Area -->
+            <div class="game-area">
+                <div class="instructions">
+                    <h2>Find and click 10 hidden hearts to reveal a special love message!</h2>
+                    <p>The hearts will appear after you start the game. Click them quickly!</p>
+                </div>
+                
+                <!-- Hearts will be dynamically inserted here by JavaScript -->
+                <div id="heartContainer" class="heart-container">
+                    <div class="start-placeholder">
+                        <i class="fas fa-heartbeat"></i>
+                        <p>Click "Start Game" to begin your romantic journey!</p>
+                    </div>
+                </div>
+                
+                <!-- Start Button (will be enhanced by JavaScript) -->
+                <button id="startButton" class="start-button">
+                    <i class="fas fa-play-circle"></i> Start Game
+                </button>
+            </div>
+
+            <!-- Special Message Section (Hidden by default) -->
+            <div id="specialMessage" class="special-message" style="display: none;">
+                <div class="message-header">
+                    <h2><i class="fas fa-gift"></i> Special Message Unlocked! 💝</h2>
+                    <p>You've collected all the hearts!</p>
+                </div>
+                
+                <div class="message-content">
+                    <div class="message-card">
+                        <div class="card-header">
+                            <h3><i class="fas fa-envelope"></i> For Someone Special 💌</h3>
+                            <div class="card-date" id="currentDate">Today</div>
+                        </div>
+                        
+                        <div class="card-stats">
+                            <div class="stat-item">
+                                <div class="stat-label">Hearts Collected</div>
+                                <div class="stat-value" id="heartsCollectedDisplay">0</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-label">Time Taken</div>
+                                <div class="stat-value" id="timeTakenDisplay">00:00</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-label">Level Completed</div>
+                                <div class="stat-value">1</div>
+                            </div>
+                        </div>
+                        
+                        <div class="love-message">
+                            <div class="message-icon">💖</div>
+                            <p class="message-text">
+                                Every heart you collected represents a special thought, a cherished memory, 
+                                and a moment of love. You've proven that with patience and care, 
+                                beautiful things can be found even in hidden places.
+                            </p>
+                            <div class="signature">~ With Love 💕</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- How to Play Section -->
+            <div class="how-to-play">
+                <h2><i class="fas fa-gamepad"></i> How to Play</h2>
+                <div class="steps-container">
+                    <div class="step">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <h3>Start the Game</h3>
+                            <p>Click the "Start Game" button to begin your romantic journey</p>
+                        </div>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <h3>Find Hearts</h3>
+                            <p>Search and click on all 10 hidden hearts on the screen</p>
+                        </div>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">3</div>
+                        <div class="step-content">
+                            <h3>Reveal Message</h3>
+                            <p>Each heart reveals part of a beautiful love message</p>
+                        </div>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">4</div>
+                        <div class="step-content">
+                            <h3>Collect & Enjoy</h3>
+                            <p>Complete all hearts to see the full special message</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <footer class="game-footer">
+            <p>Made with <i class="fas fa-heart" style="color: #ff4081;"></i> | Secret Love Messages Game</p>
+            <p class="footer-note">Find all hearts to unlock the secret message!</p>
+        </footer>
+    </div>
+
+    <!-- JavaScript Files -->
+    <script src="game.js"></script>
+    <script>
+        // Set current date
+        document.addEventListener('DOMContentLoaded', function() {
+            const today = new Date();
+            const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+            document.getElementById('currentDate').textContent = today.toLocaleDateString('en-US', options);
+        });
+    </script>
+</body>
+</html>
